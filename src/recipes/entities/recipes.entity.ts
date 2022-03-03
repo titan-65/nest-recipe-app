@@ -1,9 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Recipe {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
@@ -12,7 +18,7 @@ export class Recipe {
   description: string;
 
   @Column()
-  image: string;
+  image?: string;
 
   @Column('simple-array')
   ingredients: string[];
@@ -34,4 +40,10 @@ export class Recipe {
 
   @Column()
   totalTime: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
